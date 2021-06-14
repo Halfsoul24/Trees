@@ -15,6 +15,12 @@ struct Node{
     }
 };
 
+int sumOfNodes(Node* root){
+    if(root==NULL){
+        return 0;
+    }
+    return sumOfNodes(root->left) + sumOfNodes(root->right) + root->data;
+}
 int countNodes(Node* root){
     
     if(root==NULL){
@@ -75,5 +81,7 @@ main(){
     cout<<sum<<endl;
     int count = countNodes(root);
     cout<<count<<endl;
+    int tot_sum = sumOfNodes(root);
+    cout<<tot_sum<<endl;
 }
     
