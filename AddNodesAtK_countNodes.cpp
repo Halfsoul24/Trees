@@ -18,35 +18,10 @@ struct Node{
 int countNodes(Node* root){
     
     if(root==NULL){
-        return -1;
+        return 0;
     }
-    queue<Node*> q;
-    q.push(root);
-    q.push(NULL);
-    int count = 0;
     
-    while(!q.empty()){
-        Node* node = q.front();  
-       
-        q.pop();
-        if(node!=NULL){
-            count++;
-            cout<<node->data<<" ";
-            if(node->left){
-                q.push(node->left);
-            }
-            if(node->right){
-                q.push(node->right);
-            }
-        }
-        
-        else if(!q.empty()){
-            q.push(NULL);
-        }
-        
-        return count;
-        
-    }   
+    return countNodes(root->left) + countNodes(root->right) + 1;
 }
 int sumAtK(Node* root, int K){
     int sum=0;
@@ -66,7 +41,7 @@ int sumAtK(Node* root, int K){
         if(node!=NULL){
             if(k==K) sum+=node->data;
             count++;
-            cout<<node->data<<" ";
+            // cout<<node->data<<" ";
             if(node->left){
                 q.push(node->left);
             }
@@ -83,7 +58,7 @@ int sumAtK(Node* root, int K){
         
     }
     
-    cout<<endl<<count<<endl;
+    // cout<<endl<<count<<endl;
     return sum;
 }
 
@@ -97,7 +72,8 @@ main(){
     root->right->left = new Node(6);
     root->right->right = new Node(7);
     int sum = sumAtK(root,2);
-    // int count = countNodes(root);
     cout<<sum<<endl;
+    int count = countNodes(root);
+    cout<<count<<endl;
 }
     
